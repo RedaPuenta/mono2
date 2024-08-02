@@ -72,25 +72,25 @@ export class CameraEventsController {
   @Subscribe(appConfig(), `camera-events:handle-session`, 'event')
   async handleSession(@Payload() eventParams: any): Promise<{ session: any }> {
     const workflows = [];
-    // const {
-    //   vehicle: { lpn },
-    //   happenedAt,
-    //   _id,
-    //   channels,
-    // } = eventParams;
-    // const ups = (channels || []).find(
-    //   ({ channel }: any) => channel === 'ups',
-    // )!._id;
+    const {
+      vehicle: { lpn },
+      happenedAt,
+      _id,
+      channels,
+    } = eventParams;
+    const ups = (channels || []).find(
+      ({ channel }: any) => channel === 'ups',
+    )!._id;
     if (true) workflows.push(SessionEntryService);
     if (eventParams.way === 'exit') workflows.push(SessionExitService);
-    // if (!workflows.length) return { session: null };
+    if (!workflows.length) return { session: null };
 
     const {
       state,
       context: { session },
       errors,
     } = await this.workflowService.run<any>(
-      {}, // { lpn, happenedAt, eventId: _id, upsId: ups },
+      { lpn, happenedAt, eventId: _id, upsId: ups },
       workflows,
     );
 

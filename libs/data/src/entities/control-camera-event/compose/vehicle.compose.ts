@@ -26,7 +26,7 @@ export const ControlCameraEventVehicleComposeFactory = (
       context,
       required: false,
     })
-    type?: string | null;
+    type?: string | null; //! PROBLEM_TYPE_MONGO ICI ca marche pas, essaye "typer" par exemple, ca marchera. C'est une clé bannie
   }
 
   return ControlCameraEventVehicle;

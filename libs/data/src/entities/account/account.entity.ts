@@ -120,7 +120,7 @@ export class AccountEntityMongo extends AccountEntityFactory({
   validator: 'mongodb',
 }) {}
 
-export const accountEntityRule: EntityValidatorType.EntityPanel = {
+export const AccountEntityRule: EntityValidatorType.EntityPanel = {
   graphql: {
     args: () => AccountEntityArgsGQL,
     object: () => AccountEntityObjectGQL,
