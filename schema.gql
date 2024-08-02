@@ -1,0 +1,765 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AuthEntity {
+  token: String
+  status: String
+  validationSteps: [String!]
+}
+
+type AddressComposeObjectGQL {
+  streetNumber: String
+  streetNumberBis: String
+  streetType: String
+  streetName: String
+  specialPlace: String
+  postOfficeBoxNumber: String
+  postalCode: String
+  addressSubRegion: String
+  addressRegion: String
+  addressLocality: String
+  addressCountry: String
+}
+
+type ChannelComposeObjectGQL {
+  _id: String!
+  channel: String!
+}
+
+type P1000ParkingRightComposeObjectGQL {
+  zoneId: String!
+  cityId: String!
+  parkId: String!
+  fineLegalId: String!
+  rootFineLegalId: String!
+  type: String!
+  rightPrice: Int!
+  startDatetime: DateTime!
+  endDatetime: DateTime!
+  pointOfSaleId: String!
+  P1000parkingRightId: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type TicketHubConfigComposeObjectGQL {
+  system: TicketHubSystemEnum!
+}
+
+enum TicketHubSystemEnum {
+  iem
+  prestopark
+}
+
+type AccountCredentialComposeObjectGQL {
+  type: String!
+  value: String!
+}
+
+type ControlCameraEventVehicleComposeObjectGQL {
+  brand: String
+  lpn: String
+  type: String
+}
+
+type ClaimNewOffenderComposeObjectGQL {
+  gender: String
+  givenName: String
+  additionalName: String
+  maidenName: String
+  familyName: String
+  address: AddressComposeObjectGQL
+}
+
+type ClaimComposeObjectGQL {
+  claimType: ClaimTypeEnum!
+  claimStatus: ClaimStatusEnum!
+  claimOrigin: Int!
+  claimReason: ClaimReasonEnum!
+  claimMessage: String
+  claimResponse: String
+  dateCreated: DateTime!
+  newOffender: ClaimNewOffenderComposeObjectGQL!
+  acknowledgementDatetime: String!
+}
+
+enum ClaimTypeEnum {
+  PRELIMINARY
+  REGULATORY
+}
+
+enum ClaimStatusEnum {
+  FILLED
+  REJECTED
+  ACCEPTED
+  TRANSFERRED
+}
+
+enum ClaimReasonEnum {
+  NO_VEHICULE
+  NOT_OWNER
+  TRANSFERRED_VEHICULE
+  USURPATION
+  USER_EXEMPTION
+  PERIOD_EXEMPTION
+  VALID_TICKET
+  VALID_ETICKET
+  WRONG_AMOUNT
+  WRONG_DEDUCTION
+  WRONG_TICKET
+  INVALID_FPS
+  VALID_PREVIOUS_FPS
+  INVALID_PREVIOUS_FPS
+  WRONG_LOCATION
+  OUT_SERVICE_PAYMENT
+  OTHER
+}
+
+type CTXRelevantCoverComposeObjectGQL {
+  startDate: DateTime!
+  endDate: DateTime!
+  tariffType: TarifTypeEnum!
+  usedMeansOfPayment: String!
+  legacyId: [String!]!
+  upsId: String!
+  status: String
+}
+
+enum TarifTypeEnum {
+  SHORT_TERM
+  SUBSCRIPTION
+  FINE
+  FREE_PERIOD
+}
+
+type ControlContextComposeObjectGQL {
+  ctxRelevantCovers: [CTXRelevantCoverComposeObjectGQL!]
+  claims: [ClaimComposeObjectGQL!]
+}
+
+type CoverComposeObjectGQL {
+  coverType: TarifTypeEnum!
+  startDate: DateTime!
+  endDate: DateTime!
+}
+
+type TerminalAlarmComposeObjectGQL {
+  level: TerminalAlarmLevelEnum!
+  name: TerminalAlarmNameEnum!
+  startDate: DateTime!
+  endDate: DateTime!
+}
+
+enum TerminalAlarmLevelEnum {
+  INFORMATION
+  INTERVENTION_REQUEST
+  RESTRICTED_MODE
+  OUT_OF_ORDER
+}
+
+enum TerminalAlarmNameEnum {
+  AUTOMAT_NOT_INITIALIZED
+  AUTOMATIC_CALL_DISABLED
+  CALIBRATION_REQUESTED
+  CALIBRATION_TABLE_ERROR
+  CARD_PRESENT_IN_READER
+  CASHBOX_DOOR_NOT_CLOSED
+  CASHBOX_NEAR_FULL
+  CASHBOX_WIRE_DISCONNECTED
+  CLOSED_FILE
+  COIN_TABLE_ERROR
+  COIN_VERIFIER_OPENED
+  COLLECTION_AUTHORIZED
+  COLLECTION_REQUESTED
+  CONFIGURATION_ERROR
+  CONTACTLESS_COLLECTION_REQUESTED
+  CUTTER_ERROR
+  DISPLAY_WIRE_DISCONNECTED
+  EPURSE_CALL_DISABLED
+  ERROR_CONFIGURATION_POWER_SUPPLY
+  ESCROW_ERROR
+  EXPIRED_HOLIDAYS
+  FULL_CASHBOX
+  FULL_PARKING
+  GATE_ERROR
+  I2C_BUS_BLOCKED
+  KEY_PRESSED
+  KEYS_NOT_LOADED
+  LAST_CALL_FAILED
+  LICENSE_ERROR
+  LOG_APPLICATION_FULL
+  LOG_DEBUG_FULL
+  LOW_AIR_BATTERY
+  LOW_ENERGY
+  LOW_LEAD_ACID_BATTERY
+  MEMORY_FULL
+  MEMORY_NEAR_FULL
+  MISSING_CASHBOX
+  MISSING_SAM
+  MODULE_ACTIVATION_REQUESTED
+  MONETIC_DOOR_OPENED
+  MUTE_EPURSE_LAM
+  MUTE_EPURSE_SAM
+  MUTE_MODEM
+  MUTE_SITE_SAM
+  NO_MORE_PAPER
+  NO_USAGE
+  NOT_ACTIVATED
+  NOT_INITIALIZED
+  NOT_OPENED
+  OUT_OF_ORDER_AIR_BATTERY
+  OUT_OF_ORDER_EPURSE_SAM
+  OUT_OF_ORDER_FILE
+  OUT_OF_ORDER_LEAD_ACID_BATTERY
+  OUT_OF_ORDER_SITE_SAM
+  OVERCONSUMPTION
+  PAPER_JAM
+  PAPER_NEAR_END
+  PARAMETERS_NOT_VALID
+  PAYMENT_MODULE_PROBLEM
+  PRINTER_DOOR_OPENED
+  PRINTER_OPENED
+  PRINTER_WIRE_DISCONNECTED
+  SAM_END_DATE_REACHED
+  SAM_START_DATE_NOT_REACHED
+  SITE_SAM_NOT_INITIALIZED
+  SSL_CERTIFICATE_NEAR_END
+  SSL_CERTIFICATE_NOT_VALID
+  STRUCTURE_ERROR
+  TILT_DETECTION
+  UNDER_USAGE
+  UNKNOWN
+}
+
+type TerminalHealthComposeObjectGQL {
+  terminalId: Int!
+  terminalName: String!
+  alive: Boolean!
+  alarms: [TerminalAlarmComposeObjectGQL!]
+}
+
+type HealthSummaryComposeObjectGQL {
+  upsId: String!
+  terminalsHealth: [TerminalHealthComposeObjectGQL!]
+}
+
+type DictionaryLangEntityObjectGQL {
+  _id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  lang: String!
+  key: String!
+  translations: Unknown!
+}
+
+"""Unknown value"""
+scalar Unknown
+
+type RecoursOrganizationComposeObjectGQL {
+  organizationId: String!
+  name: String
+  url: String
+  address: AddressComposeObjectGQL
+}
+
+type ControlAgentComposeObjectGQL {
+  name: String
+  agentId: String!
+  worksFor: RecoursOrganizationComposeObjectGQL
+}
+
+type LicensePlateComposeObjectGQL {
+  plate: String
+  plateCountry: String!
+  pricingCategory: RecoursOrganizationComposeObjectGQL
+}
+
+type StatementLocationComposeObjectGQL {
+  latitude: Int
+  longitude: Int
+  altitude: Int
+  incertitude: Int
+}
+
+type FPSUserDetailsComposeObjectGQL {
+  gender: String
+  honorificPrefix: String
+  givenName: String
+  additionalName: String
+  maidenName: String
+  familyName: String
+  organizationId: String
+  name: String
+  url: String
+  address: AddressComposeObjectGQL
+}
+
+type FpsVehicleComposeObjectGQL {
+  brand: String!
+  model: String
+  vehicleCategory: String
+}
+
+type FPSConfigRecourseOrganizationComposeObjectGQL {
+  address: AddressComposeObjectGQL!
+  name: String!
+  organizationId: String!
+  url: String!
+}
+
+type FPSConfigComposeObjectGQL {
+  maximumDuration: Int!
+  maximumAmount: Int!
+  system: String!
+  notificationAuthority: NotificationAuthorityEnum!
+  finePrice: Int!
+  reducedFinePrice: Int!
+  address: FPSConfigRecourseOrganizationComposeObjectGQL!
+}
+
+enum NotificationAuthorityEnum {
+  LOCAL
+  ANTAI
+}
+
+type OnstreetConfigComposeObjectGQL {
+  maximumDuration: Int!
+  maximumAmount: Int!
+}
+
+type P1000ConfigComposeObjectGQL {
+  url: String!
+  port: Int!
+  path: String!
+  user: String!
+  password: String!
+  multisite_tag_id: String!
+  web2token: String!
+  psp: String!
+  tag_id: String!
+  tariffId: String!
+  legacyId: String!
+}
+
+type PrestoOneComposeObjectGQL {
+  config: Unknown
+  gui: Unknown
+  tickets: Unknown
+  wizards: Unknown
+  translations: Unknown
+  tariffs: [String!]
+}
+
+type PrestoParkConfigComposeObjectGQL {
+  cityId: String!
+}
+
+type PrestoScanConfigDeletionDelayComposeObjectGQL {
+  incomplete: Int!
+  complete: Int!
+  toCheck: Int!
+  unfined: Int!
+  fined: Int!
+}
+
+type PrestoScanConfigOutrageTresholdComposeObjectGQL {
+  danger: Int!
+  warning: Int!
+  valid: Int!
+}
+
+type PrestoScanConfigComposeObjectGQL {
+  entryTolerancePeriod: Int!
+  exitTolerancePeriod: Int!
+  isVerbalizationAllowed: Boolean!
+  showOccupancy: Boolean!
+  deletionDelay: PrestoScanConfigDeletionDelayComposeObjectGQL!
+  outrageTreshold: PrestoScanConfigOutrageTresholdComposeObjectGQL!
+}
+
+type GlobalConfigComposeObjectGQL {
+  ticketsHub: TicketHubConfigComposeObjectGQL
+  prestoOne: PrestoOneComposeObjectGQL
+  prestoscan: PrestoScanConfigComposeObjectGQL
+  onstreet: OnstreetConfigComposeObjectGQL
+  fps: FPSConfigComposeObjectGQL
+  prestoPark: PrestoParkConfigComposeObjectGQL
+  p1000: P1000ConfigComposeObjectGQL
+}
+
+type ShapeComposeObjectGQL {
+  type: String!
+  coordinates: [[Float!]!]
+}
+
+type TranslationComposeObjectCGQL {
+  lang: String!
+  name: String!
+  description: String
+}
+
+type PaginationResultObjectGQL {
+  current: Int!
+  count: Int!
+  limit: Int!
+}
+
+type ControlUserAuthEntity {
+  _id: String!
+  firstName: String
+  lastName: String
+}
+
+type LoginResponseDto {
+  auth: AuthEntity!
+  user: ControlUserAuthEntity!
+}
+
+type ResetPasswordResponseDto {
+  auth: AuthEntity!
+  user: ControlUserAuthEntity!
+}
+
+type ControlCameraEntity {
+  _id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  code: String!
+  position: ControlCameraPositionEnum!
+  ups: String!
+  description: String
+}
+
+enum ControlCameraPositionEnum {
+  inside
+  outside
+}
+
+type ResourcesEntity {
+  _id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  tag: String!
+  path: String!
+  url: String!
+  checksum: String!
+  owner: String!
+  bucket: String!
+  size: Int!
+  channels: [ChannelComposeObjectGQL!]!
+  stopDate: String
+}
+
+type SearchResourceResponseDto {
+  list: ResourcesEntity!
+  paging: PaginationResultObjectGQL!
+}
+
+type ControlCameraEventEntity {
+  _id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  cameraId: String!
+  isVehicle: Boolean
+  knownLpn: Boolean
+  way: ControlCameraEventWayEnum!
+  confidence: Int
+  happenedAt: DateTime
+  vehicle: ControlCameraEventVehicleComposeObjectGQL!
+  hasSubscription: Boolean
+  hasParkingRight: Boolean
+  channels: [ChannelComposeObjectGQL!]
+  camera: ControlCameraEntity!
+  resources: SearchResourceResponseDto!
+  isAnonymised: Boolean!
+}
+
+enum ControlCameraEventWayEnum {
+  entry
+  exit
+  unknown
+}
+
+type SearchControlCameraEventResponseDto {
+  list: ControlCameraEventEntity!
+  paging: PaginationResultObjectGQL!
+}
+
+type Location {
+  latitude: Float!
+  longitude: Float!
+  altitude: Float!
+  incertitude: Float!
+}
+
+type Payload {
+  tariffId: String
+  duree_fps: Int
+  pointOfSaleId: String
+  legacyId: String
+}
+
+type UpsEntity {
+  _id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  clientId: String!
+  code: String!
+  type: String
+  maximumDuration: Int
+  translation: [TranslationComposeObjectCGQL!]
+  center: [Float!]!
+  shape: ShapeComposeObjectGQL!
+  shapeColor: String
+  address: AddressComposeObjectGQL
+  externalUpsId: String
+  config: GlobalConfigComposeObjectGQL
+  occupancy: Int
+  capacity: Int
+  location: Location
+  groupId: String
+  payload: Payload
+}
+
+type TerminalStateEntity {
+  name: String!
+  terminalId: Float!
+  startDate: String
+  endDate: String
+}
+
+type ControlSessionEntity {
+  _id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  startDate: DateTime!
+  endDate: DateTime
+  controlState: ControlCameraStateEnum!
+  isExposed: Boolean!
+  lpn: String!
+  upsId: String!
+  entryEventId: String!
+  exitEventId: String
+  covers: [CoverComposeObjectGQL!]
+  controlCtx: ControlContextComposeObjectGQL
+  channels: [ChannelComposeObjectGQL!]
+  uncoveredDuration: Int
+  rightsDuration: Int
+  healthSummary: HealthSummaryComposeObjectGQL
+  significantRights: [P1000ParkingRightComposeObjectGQL!]
+  terminalState: TerminalStateEntity!
+  entryEvent: ControlCameraEventEntity!
+  exitEvent: ControlCameraEventEntity
+  ups: UpsEntity!
+  previousClaimsForUser: Boolean!
+  allTerminalsAreAlive: Boolean!
+}
+
+enum ControlCameraStateEnum {
+  UNDEFINED
+  TO_CONTROL
+  FINED
+  NOT_FINED
+  ERROR
+  OK
+}
+
+type SearchControlSessionResponseDto {
+  list: ControlSessionEntity!
+  paging: PaginationResultObjectGQL!
+}
+
+type ControlUserEntity {
+  _id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  accountId: String!
+  username: String!
+  firstName: String
+  lastName: String
+  fpsAgentId: String
+  fpsOrderCount: Int
+  authorityId: Int
+  fpsAgentName: String
+  phone: String
+  lang: String
+  state: String
+  ups: [UpsEntity!]
+}
+
+type UpdatePasswordResponseDto {
+  success: Boolean!
+}
+
+type FpsEntityPicture {
+  pictureName: String
+  description: String
+  pictureDatetime: DateTime
+  contentURL: String
+}
+
+type FpsEntity {
+  _id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  upsId: String!
+  fineId: String!
+  fineLegalId: String!
+  type: FPSTypeEnum!
+  rootFineLegalId: String!
+  parent: String
+  authId: String!
+  agent: ControlAgentComposeObjectGQL!
+  cityId: String!
+  terminalId: String!
+  licensePlate: LicensePlateComposeObjectGQL!
+  vehicle: FpsVehicleComposeObjectGQL!
+  zoneId: String!
+  parkId: String
+  statementDatetime: DateTime!
+  statementAddress: AddressComposeObjectGQL!
+  statementLocation: StatementLocationComposeObjectGQL!
+  notificationAuthority: NotificationAuthorityEnum!
+  authTransfertDatetime: DateTime
+  notificationDatetime: DateTime
+  dateModified: DateTime
+  validityDatetime: DateTime
+  reducedDatetime: DateTime
+  finePrice: Int!
+  surcharge: Int
+  reducedFinePrice: Int
+  reducedPriceDuration: Int
+  paymentStatus: FPSPaymentStatusEnum
+  recourseOrganization: RecoursOrganizationComposeObjectGQL!
+  offender: FPSUserDetailsComposeObjectGQL
+  representative: FPSUserDetailsComposeObjectGQL
+  comment: String
+  cancelledResponse: String
+  significantRights: [P1000ParkingRightComposeObjectGQL!]
+  class: String!
+  pictures: [FpsEntityPicture!]!
+}
+
+enum FPSTypeEnum {
+  INITIAL
+  CORRECTION
+  CANCELLED
+}
+
+enum FPSPaymentStatusEnum {
+  PENDING
+  OVERPAID
+  PAID
+  CANCELLED
+}
+
+type DictionaryEntity {
+  _id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  key: String!
+  languages: [String!]!
+  documents: [DictionaryLangEntityObjectGQL!]!
+}
+
+type Query {
+  ups(id: String!): UpsEntity!
+  session(id: String!): ControlSessionEntity!
+  sessions(page: Int, limit: Int, order: String, startDate: DateTime, endDate: DateTime, controlState: ControlCameraStateEnum, isExposed: Boolean, lpn: String, entryEventId: String, exitEventId: String, upsId: String!, minUncoveredDuration: Int): SearchControlSessionResponseDto!
+  cameras(upsId: String!): [ControlCameraEntity!]!
+  me: ControlUserEntity!
+  events(page: Int, limit: Int, order: String, cameraId: String, isVehicle: Boolean, knownLpn: Boolean, way: ControlCameraEventWayEnum, upsId: String!, lpnLike: String, startDate: DateTime, endDate: DateTime): SearchControlCameraEventResponseDto!
+  event(cameraEventId: String!): ControlCameraEventEntity!
+  i18n(key: String): DictionaryEntity!
+}
+
+type Mutation {
+  updateUpsOccupancy(upsId: String!, delta: Float!): Boolean!
+  createFps(input: CreateFpsDto!): FpsEntity!
+  updateSession(sessionId: String!, input: UpdateControlSessionsDto!): ControlSessionEntity!
+  updatePassword(input: UpdatePasswordDto!): UpdatePasswordResponseDto!
+  login(username: String!, password: String!): LoginResponseDto!
+  resetPassword(username: String!, currentPassword: String!, newPassword: String!): ResetPasswordResponseDto!
+}
+
+input CreateFpsDto {
+  upsId: String!
+  type: FPSTypeEnum!
+  rootFineLegalId: String!
+  terminalId: String!
+  licensePlate: LicensePlateComposeInputGQL!
+  vehicle: FpsVehicleComposeInputGQL!
+  parkId: String
+  statementDatetime: DateTime!
+  paymentStatus: FPSPaymentStatusEnum
+  sessionId: String!
+  userId: String!
+  comments: [CommentsDto!]!
+  pictures: [FpsPicture!]!
+}
+
+input LicensePlateComposeInputGQL {
+  plate: String
+  plateCountry: String!
+  pricingCategory: RecoursOrganizationComposeInputGQL
+}
+
+input RecoursOrganizationComposeInputGQL {
+  organizationId: String!
+  name: String
+  url: String
+  address: AddressComposeInputGQL
+}
+
+input AddressComposeInputGQL {
+  streetNumber: String
+  streetNumberBis: String
+  streetType: String
+  streetName: String
+  specialPlace: String
+  postOfficeBoxNumber: String
+  postalCode: String
+  addressSubRegion: String
+  addressRegion: String
+  addressLocality: String
+  addressCountry: String
+}
+
+input FpsVehicleComposeInputGQL {
+  brand: String!
+  model: String
+  vehicleCategory: String
+}
+
+input CommentsDto {
+  agent: ControlAgentComposeInputGQL!
+  creationDatetime: String!
+  text: String!
+}
+
+input ControlAgentComposeInputGQL {
+  name: String
+  agentId: String!
+  worksFor: RecoursOrganizationComposeInputGQL
+}
+
+input FpsPicture {
+  data: String
+  mimeType: String
+  description: String
+  pictureDatetime: DateTime
+  contentURL: String
+}
+
+input UpdateControlSessionsDto {
+  controlState: ControlCameraStateEnum
+}
+
+input UpdatePasswordDto {
+  currentPassword: String!
+  newPassword: String!
+}

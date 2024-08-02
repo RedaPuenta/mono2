@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/monorepo/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/monorepo/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/monorepo",
+  "projects": {
+    "monorepo": {
+      "type": "application",
+      "root": "apps/monorepo",
+      "entryFile": "main",
+      "sourceRoot": "apps/monorepo/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/monorepo/tsconfig.app.json"
+      }
+    },
+    "bff-presto-scan": {
+      "type": "application",
+      "root": "apps/bff-presto-scan",
+      "entryFile": "main",
+      "sourceRoot": "apps/bff-presto-scan/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/bff-presto-scan/tsconfig.app.json"
+      }
+    },
+    "api-control": {
+      "type": "application",
+      "root": "apps/api-control",
+      "entryFile": "main",
+      "sourceRoot": "apps/api-control/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/api-control/tsconfig.app.json"
+      }
+    },
+    "ms-control": {
+      "type": "application",
+      "root": "apps/ms-control",
+      "entryFile": "main",
+      "sourceRoot": "apps/ms-control/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/ms-control/tsconfig.app.json"
+      }
+    },
+    "api-health": {
+      "type": "application",
+      "root": "apps/api-health",
+      "entryFile": "main",
+      "sourceRoot": "apps/api-health/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/api-health/tsconfig.app.json"
+      }
+    },
+    "api-legacy": {
+      "type": "application",
+      "root": "apps/api-legacy",
+      "entryFile": "main",
+      "sourceRoot": "apps/api-legacy/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/api-legacy/tsconfig.app.json"
+      }
+    },
+    "ms-clients": {
+      "type": "application",
+      "root": "apps/ms-clients",
+      "entryFile": "main",
+      "sourceRoot": "apps/ms-clients/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/ms-clients/tsconfig.app.json"
+      }
+    },
+    "api-tools": {
+      "type": "application",
+      "root": "apps/api-tools",
+      "entryFile": "main",
+      "sourceRoot": "apps/api-tools/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/api-tools/tsconfig.app.json"
+      }
+    },
+    "api-accounts": {
+      "type": "application",
+      "root": "apps/api-accounts",
+      "entryFile": "main",
+      "sourceRoot": "apps/api-accounts/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/api-accounts/tsconfig.app.json"
+      }
+    },
+    "ms-legacy": {
+      "type": "application",
+      "root": "apps/ms-legacy",
+      "entryFile": "main",
+      "sourceRoot": "apps/ms-legacy/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/ms-legacy/tsconfig.app.json"
+      }
+    },
+    "bff-resources": {
+      "type": "application",
+      "root": "apps/bff-resources",
+      "entryFile": "main",
+      "sourceRoot": "apps/bff-resources/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/bff-resources/tsconfig.app.json"
+      }
+    },
+    "api-onstreet": {
+      "type": "application",
+      "root": "apps/api-onstreet",
+      "entryFile": "main",
+      "sourceRoot": "apps/api-onstreet/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/api-onstreet/tsconfig.app.json"
+      }
+    },
+    "configs": {
+      "type": "library",
+      "root": "libs/configs",
+      "entryFile": "index",
+      "sourceRoot": "libs/configs/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/configs/tsconfig.lib.json"
+      }
+    },
+    "filters": {
+      "type": "library",
+      "root": "libs/filters",
+      "entryFile": "index",
+      "sourceRoot": "libs/filters/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/filters/tsconfig.lib.json"
+      }
+    },
+    "guards": {
+      "type": "library",
+      "root": "libs/guards",
+      "entryFile": "index",
+      "sourceRoot": "libs/guards/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/guards/tsconfig.lib.json"
+      }
+    },
+    "interceptors": {
+      "type": "library",
+      "root": "libs/interceptors",
+      "entryFile": "index",
+      "sourceRoot": "libs/interceptors/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/interceptors/tsconfig.lib.json"
+      }
+    },
+    "modules": {
+      "type": "library",
+      "root": "libs/modules",
+      "entryFile": "index",
+      "sourceRoot": "libs/modules/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/modules/tsconfig.lib.json"
+      }
+    },
+    "pipes": {
+      "type": "library",
+      "root": "libs/pipes",
+      "entryFile": "index",
+      "sourceRoot": "libs/pipes/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/pipes/tsconfig.lib.json"
+      }
+    },
+    "strategys": {
+      "type": "library",
+      "root": "libs/strategys",
+      "entryFile": "index",
+      "sourceRoot": "libs/strategys/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/strategys/tsconfig.lib.json"
+      }
+    },
+    "decorators": {
+      "type": "library",
+      "root": "libs/decorators",
+      "entryFile": "index",
+      "sourceRoot": "libs/decorators/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/decorators/tsconfig.lib.json"
+      }
+    },
+    "registrys": {
+      "type": "library",
+      "root": "libs/registrys",
+      "entryFile": "index",
+      "sourceRoot": "libs/registrys/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/registrys/tsconfig.lib.json"
+      }
+    },
+    "data": {
+      "type": "library",
+      "root": "libs/data",
+      "entryFile": "index",
+      "sourceRoot": "libs/data/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/data/tsconfig.lib.json"
+      }
+    },
+    "scalars": {
+      "type": "library",
+      "root": "libs/scalars",
+      "entryFile": "index",
+      "sourceRoot": "libs/scalars/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/scalars/tsconfig.lib.json"
+      }
+    }
+  }
+}

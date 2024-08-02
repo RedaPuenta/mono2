@@ -1,0 +1,522 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type P1000 {
+  url: String
+  port: String
+  path: String
+  user: String
+  password: String
+  multisite_tag_id: String
+  web2token: String
+  psp: String
+  tag_id: String
+  pointOfSaleId: String
+  legacyId: String
+}
+
+type TicketHub {
+  system: String!
+}
+
+type Livio {
+  pouet: String!
+}
+
+type Yoonite {
+  maximumDuration: Int
+  maximumAmount: Int
+}
+
+type PrestoscanDeletionDelay {
+  incomplete: Int
+  complete: Int
+  toCheck: Int
+  unfined: Int
+  fined: Int
+}
+
+type PrestoscanOutrageTreshold {
+  danger: Int
+  warning: Int
+  valid: Int
+}
+
+type Prestoscan {
+  isVerbalizationAllowed: Boolean
+  deletionDelay: PrestoscanDeletionDelay
+  outrageTreshold: PrestoscanOutrageTreshold
+}
+
+type Fps {
+  maximumDuration: Int
+  maximumAmount: Int
+  reducedPriceDuration: Int
+  finePrice: Int
+  reducedFinePrice: Int
+}
+
+type Config {
+  p1000: P1000
+  ticketsHub: TicketHub
+  livio: Livio
+  yoonite: Yoonite
+  prestoScan: Prestoscan
+  fps: Fps
+}
+
+type Address {
+  streetNumber: String
+  streetNumberBis: String
+  streetType: String
+  streetName: String
+  specialPlace: String
+  postalCode: String
+  addressLocality: String
+  addressSubRegion: String
+}
+
+type Location {
+  latitude: Int!
+  longitude: Int!
+  altitude: Int!
+  incertitude: Int!
+}
+
+type Payload {
+  tariffId: String
+  duree_fps: Int
+  pointOfSaleId: String
+  legacyId: String
+}
+
+type UpsEntity {
+  _id: String!
+  clientId: String!
+  code: String!
+  type: String!
+  maximumDuration: Int
+  center: [Float!]
+  shape: Any
+  config: Config
+  address: Address
+  location: Location
+  payload: Payload
+  occupancy: Int
+  capacity: Int
+  groupId: String
+}
+
+"""Any value."""
+scalar Any
+
+type ControlUserEntity {
+  _id: String
+  state: String
+  username: String
+  accountId: String
+  createdAt: String
+  updatedAt: String
+  phone: String
+  lastName: String
+  firstName: String
+  lang: String
+  fpsAgentId: String
+  fpsAgentName: String
+  ups: [UpsEntity!]
+}
+
+type AuthEntity {
+  token: String
+  status: String
+  validationSteps: [String!]
+}
+
+type LoginResponseDto {
+  auth: AuthEntity!
+  user: ControlUserEntity!
+}
+
+type ResetPasswordResponseDto {
+  auth: AuthEntity!
+  user: ControlUserEntity!
+}
+
+type CameraEntity {
+  _id: String!
+  code: String!
+  ups: String!
+  position: String!
+}
+
+type Pagination {
+  current: Int!
+  count: Int!
+  limit: Int!
+}
+
+type Channel {
+  channel: String
+  _id: String
+}
+
+type ResourcesEntity {
+  _id: String
+  updatedAt: String
+  checksum: String
+  owner: String
+  path: String
+  url: String
+  size: Int
+  channels: Channel
+  createdAt: String
+  stopDate: String
+}
+
+type ResourcesPaging {
+  list: [ResourcesEntity!]!
+  paging: Pagination!
+}
+
+type VehicleEntity {
+  lpn: String
+  type: String
+  brand: String
+  isVehicle: Boolean
+}
+
+type CameraEventEntity {
+  _id: String
+  way: String
+  confidence: Int
+  createdAt: String
+  happenedAt: String
+  vehicle: VehicleEntity
+  cameraId: String
+  camera: CameraEntity
+  resources: ResourcesPaging
+  hasSubscription: Boolean!
+  hasParkingRight: Boolean!
+  knownLpn: Boolean
+  isAnonymised: Boolean!
+}
+
+type CameraEventsPaging {
+  list: [CameraEventEntity!]!
+  paging: Pagination!
+}
+
+type Alarm {
+  level: String!
+  name: String!
+  startDate: String
+  endDate: String
+}
+
+type TerminalStateEntity {
+  name: String!
+  terminalId: Int!
+  startDate: String
+  endDate: String
+}
+
+type TerminalHealth {
+  terminalId: Int!
+  terminalName: String!
+  alive: Boolean!
+  alarms: [Alarm!]
+}
+
+type HealthSummary {
+  upsId: String!
+  terminalsHealth: [TerminalHealth!]
+}
+
+type Period {
+  coverType: String!
+  startDate: String!
+  endDate: String!
+}
+
+type PersonAddress {
+  streetNumber: String!
+  streetNumberBis: String!
+  streetType: String!
+  streetName: String!
+  specialPlace: String!
+  postOfficeBoxNumber: String!
+  postalCode: String!
+  addressSubRegion: String!
+  addressRegion: String!
+  addressLocality: String!
+  addressCountry: String!
+}
+
+type GuiltyPerson {
+  gender: String!
+  givenName: String!
+  additionalName: String!
+  maidenName: String!
+  familyName: String!
+  address: PersonAddress!
+}
+
+type Claim {
+  claimType: String!
+  claimStatus: String!
+  claimOrigin: Int!
+  claimReason: String!
+  claimMessage: String!
+  claimResponse: String!
+  dateCreated: String!
+  newOffender: GuiltyPerson!
+  acknowledgementDatetime: String!
+}
+
+type ParkingRightMin {
+  startDate: String!
+  endDate: String!
+  tariffType: String!
+  usedMeansOfPayment: String!
+  upsId: String!
+  legacyId: [String!]!
+  status: String
+}
+
+type ControlContext {
+  ctxRelevantCovers: [ParkingRightMin!]!
+  claims: [Claim!]!
+}
+
+type ControlSessionEntity {
+  _id: String!
+  startDate: String!
+  endDate: String
+  controlState: String
+  isExposed: Boolean!
+  lpn: String!
+  upsId: String!
+  entryEventId: String!
+  exitEventId: String
+  entryEvent: CameraEventEntity!
+  exitEvent: CameraEventEntity
+  covers: [Period!]!
+  channels: [Channel!]!
+  uncoveredDuration: Int
+  rightsDuration: Float
+  healthSummary: HealthSummary
+  ups: UpsEntity!
+  controlCtx: ControlContext
+  previousClaimsForUser: Boolean!
+  allTerminalsAreAlive: Boolean!
+  terminalState: [TerminalStateEntity!]!
+}
+
+type ControlSessionsPaging {
+  list: [ControlSessionEntity!]!
+  paging: Pagination!
+}
+
+type UpdatePasswordResponseDto {
+  success: Boolean!
+}
+
+type FineAddress {
+  streetNumber: String!
+  streetNumberBis: String!
+  streetclass: String!
+  streetName: String!
+  specialPlace: String!
+  postOfficeBoxNumber: String!
+  postalCode: String!
+  addressSubRegion: String!
+  addressRegion: String!
+  addressLocality: String!
+  addressCountry: String!
+}
+
+type Organization {
+  organizationId: String!
+  name: String!
+  url: String!
+  address: FineAddress!
+}
+
+type Agent {
+  name: String!
+  agentId: String!
+  worksFor: Organization!
+}
+
+type LicensePlate {
+  plate: String!
+  plateCountry: String!
+  pricingCategory: String!
+}
+
+type Vehicle {
+  brand: String!
+  model: String!
+  vehiculeCategory: String!
+}
+
+type Person {
+  gender: String!
+  honorificPrefix: String!
+  givenName: String!
+  additionalName: String!
+  maidenName: String!
+  familyName: String!
+  address: FineAddress!
+}
+
+type Picture {
+  pictureName: String!
+  description: String!
+  pictureDatetime: String!
+  contentURL: String!
+}
+
+type SignificantRight {
+  zoneId: String!
+  parkId: String!
+  cityId: String!
+  fineLegalId: String!
+  rootFineLegalId: String!
+  class: String!
+  rightPrice: Int!
+  startDatetime: String!
+  endDatetime: String!
+  pointOfSaleId: String!
+  parkingRightId: String!
+}
+
+type FineEntity {
+  fineId: String!
+  fineLegalId: String!
+  class: String!
+  rootFineLegalId: String!
+  parent: String!
+  authId: String!
+  agent: Agent!
+  cityId: String!
+  terminalId: String!
+  licensePlate: LicensePlate!
+  vehicle: Vehicle!
+  zoneId: String!
+  parkId: String!
+  statementDatetime: String!
+  statementAddress: FineAddress!
+  statementLocation: Location!
+  notificationAuthority: String!
+  authTransfertDatetime: String!
+  notificationDatetime: String!
+  dateModified: String!
+  validityDatetime: String!
+  reducedDatetime: String!
+  finePrice: Int!
+  surcharge: Int!
+  reducedFinePrice: Int!
+  reducedPriceDuration: Int!
+  paymentStatus: String!
+  recourseOrganization: Organization!
+  offender: Person!
+  representative: Person!
+  comment: String!
+  cancelledResponse: String!
+  pictures: [Picture!]!
+  significantRights: [SignificantRight!]!
+}
+
+type DocumentEntity {
+  _id: String!
+  translations: DocumentTranslations!
+  lang: String!
+  createdAt: String!
+}
+
+"""Any value."""
+scalar DocumentTranslations
+
+type I18n {
+  _id: String!
+  documents: [DocumentEntity!]!
+  languages: [String!]!
+  key: String!
+  createdAt: String!
+}
+
+type Query {
+  session(id: String!): ControlSessionEntity!
+  sessions(page: Int! = 1, limit: Int! = 20, order: String = "-createdAt", controlState: String, startDate: String, endDate: String, isExposed: Boolean, lpn: String, upsId: String!, entryEventId: String, exitEventId: String, minUncoveredDuration: Int): ControlSessionsPaging!
+  me: ControlUserEntity!
+  ups(id: String!): UpsEntity!
+  cameras(upsId: String!): [CameraEntity!]!
+  events(page: Int! = 1, limit: Int! = 20, order: String = "-createdAt", way: String, upsId: String!, lpnLike: String, cameraId: String, isVehicle: Boolean, knownLpn: Boolean, startDate: String, endDate: String): CameraEventsPaging!
+  event(cameraEventId: String!): CameraEventEntity!
+  i18n(key: String): I18n!
+}
+
+type Mutation {
+  createFps(input: CreateFpsDto!): FineEntity!
+  updateSession(sessionId: String!, input: UpdateControlSessionsDto!): ControlSessionEntity!
+  updatePassword(input: UpdatePasswordDto!): UpdatePasswordResponseDto!
+  updateUpsOccupancy(upsId: String!, delta: Int!): Boolean!
+  login(username: String!, password: String!): LoginResponseDto!
+  resetPassword(username: String!, currentPassword: String!, newPassword: String!): ResetPasswordResponseDto!
+}
+
+input CreateFpsDto {
+  sessionId: String!
+  upsId: String!
+  type: String!
+  userId: String!
+  rootFineLegalId: String
+  terminalId: String!
+  licensePlate: LicensePlateDto!
+  vehicle: VehicleDto!
+  parkId: String!
+  statementDatetime: String!
+  comments: [CommentsDto!]!
+  pictures: [PicturesDto!]!
+  paymentStatus: String!
+}
+
+input LicensePlateDto {
+  plate: String!
+  plateCountry: String
+}
+
+input VehicleDto {
+  brand: String!
+  model: String!
+}
+
+input CommentsDto {
+  agent: AgentDto!
+  creationDatetime: String!
+  text: String!
+}
+
+input AgentDto {
+  name: String!
+  agentId: String!
+}
+
+input PicturesDto {
+  data: String
+  mimeType: String!
+  description: String!
+  pictureDatetime: String!
+  contentURL: String
+}
+
+input UpdateControlSessionsDto {
+  controlState: String
+}
+
+input UpdatePasswordDto {
+  currentPassword: String!
+  newPassword: String!
+}
