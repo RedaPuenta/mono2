@@ -18,8 +18,8 @@ import { UpsModule } from './ups/ups.module';
     UpsModule,
     SitesModule,
     TerminalsModule,
-    ScheduleModule.forRoot(),
     PmsTechnicalUsersModule,
+    ScheduleModule.forRoot(),
   ],
 })
 export class AppModule {}

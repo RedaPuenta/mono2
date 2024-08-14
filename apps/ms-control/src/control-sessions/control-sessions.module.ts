@@ -2,17 +2,10 @@ import { MongoModule } from '@lib/modules';
 import { Module } from '@nestjs/common';
 import { ControlSessionController } from './control-sessions.controller';
 import { ControlSessionsService } from './control-sessions.service';
-import {
-  ControlSession,
-  ControlSessionSchema,
-} from './schemas/control-sessions.schema';
+import { ControlSession } from './schemas/control-sessions.schema';
 
 @Module({
-  imports: [
-    MongoModule.collection([
-      { name: ControlSession.name, schema: ControlSessionSchema },
-    ]),
-  ],
+  imports: [MongoModule.collection([ControlSession])],
   controllers: [ControlSessionController],
   providers: [ControlSessionsService],
 })

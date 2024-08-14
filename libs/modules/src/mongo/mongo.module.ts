@@ -28,36 +28,38 @@ export class MongoModule extends MongooseModule {
     };
   }
 
-  public static collection(params: any): DynamicModule {
-    return {
-      ...super.forFeature(params),
-    };
-  }
-
-  // public static collection(object: {
-  //   new (...args: any[]): any;
-  // }): DynamicModule {
+  // public static collection(params: any): DynamicModule {
   //   return {
-  //     ...super.forFeatureAsync([
-  //       {
-  //         name: object.name,
-  //         imports: [
-  //           ConfigModule.forRoot({ ...MongoConfigEnv, load: [MongoConfig] }),
-  //           LogModule,
-  //         ],
-  //         inject: [ConfigService, LogService],
-  //         useFactory: (
-  //           configService: ConfigService,
-  //           logService: LogService,
-  //         ) => {
-  //           const buildSchema = SchemaFactory.createForClass(object);
-  //           buildSchema.pre('save', function () {
-  //             logService.debug({ message: 'Before save data' });
-  //           });
-  //           return buildSchema;
-  //         },
-  //       },
-  //     ]),
+  //     ...super.forFeature(params),
   //   };
   // }
+
+  public static collection(
+    schemas: Array<{
+      new (...args: any[]): any;
+    }>,
+  ): DynamicModule {
+    return {
+      ...super.forFeatureAsync(
+        schemas.map((item) => ({
+          name: item.name,
+          imports: [
+            ConfigModule.forRoot({ ...MongoConfigEnv, load: [MongoConfig] }),
+            LogModule,
+          ],
+          inject: [ConfigService, LogService],
+          useFactory: (
+            configService: ConfigService,
+            logService: LogService,
+          ) => {
+            const buildSchema = SchemaFactory.createForClass(item);
+            buildSchema.pre('save', function () {
+              logService.debug({ message: 'Before save data' });
+            });
+            return buildSchema;
+          },
+        })),
+      ),
+    };
+  }
 }

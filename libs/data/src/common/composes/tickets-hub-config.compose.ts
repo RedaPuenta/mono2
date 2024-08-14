@@ -4,7 +4,7 @@ import {
   EntityValidatorType,
   StringValidator,
 } from '@lib/decorators';
-import { TicketHubSystemEnum } from '../enum/tickets-hub-system.compose';
+import { TicketHubSystemEnum } from '../enum/tickets-hub-system.enum';
 
 export const TicketHubConfigComposeFactory = (
   context: ContextValidatorType.Props,

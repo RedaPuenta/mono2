@@ -157,7 +157,7 @@ export function StringValidator({
             trim,
             enum: enumeration,
             unique,
-            index,
+            index: unique || index,
             lowercase: formalize === 'lowercase',
             uppercase: formalize === 'uppercase',
             minlength: minLength,
