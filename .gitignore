@@ -2,8 +2,6 @@
 /dist
 /node_modules
 
-./docker/test.sh
-
 pnpm-lock.yaml
 
 # Logs
