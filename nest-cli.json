@@ -37,13 +37,13 @@
         "tsConfigPath": "apps/api-control/tsconfig.app.json"
       }
     },
-    "api-control": {
+    "api-control-test-with-mono": {
       "type": "application",
-      "root": "apps/api-control",
+      "root": "apps/api-control-test-with-mono",
       "entryFile": "main",
-      "sourceRoot": "apps/api-control/src",
+      "sourceRoot": "apps/api-control-test-with-mono/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/api-control/tsconfig.app.json"
+        "tsConfigPath": "apps/api-control-test-with-mono/tsconfig.app.json"
       }
     },
     "ms-control": {
