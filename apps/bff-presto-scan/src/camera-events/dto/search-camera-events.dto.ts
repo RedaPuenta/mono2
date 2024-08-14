@@ -7,13 +7,14 @@ import {
   PartialType,
   PickType,
 } from '@nestjs/graphql';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsDateString, IsMongoId } from 'class-validator';
+import { ApiPropertyOptional } from '@nestjs/swagger';
+import { IsDateString } from 'class-validator';
 import {
   ControlCameraEventEntityArgsGQL,
   PaginationParamsGenericArgsGQL,
   PagingGeneric,
 } from 'libs/data';
+import { StringValidator } from '@lib/decorators';
 import { ControlCameraEventEntity } from '../entities/camera-event.entity';
 
 @ObjectType()
@@ -37,9 +38,16 @@ export class SearchControlCameraEventDto extends IntersectionType(
     ] as const),
   ),
 ) {
-  @ApiProperty({ type: String })
-  @Field(() => String)
-  @IsMongoId()
+  @StringValidator({
+    context: {
+      validator: 'graphql',
+      type: 'args',
+    },
+    required: true,
+    special: {
+      type: 'mongoId',
+    },
+  })
   upsId!: string;
 
   @ApiPropertyOptional({ type: String })

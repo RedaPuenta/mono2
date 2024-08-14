@@ -37,6 +37,15 @@
         "tsConfigPath": "apps/api-control/tsconfig.app.json"
       }
     },
+    "api-control": {
+      "type": "application",
+      "root": "apps/api-control",
+      "entryFile": "main",
+      "sourceRoot": "apps/api-control/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/api-control/tsconfig.app.json"
+      }
+    },
     "ms-control": {
       "type": "application",
       "root": "apps/ms-control",
